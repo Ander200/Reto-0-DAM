@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="script.js"></script>
     
     <title>Reto 0</title>
     <style>
@@ -26,19 +27,34 @@
             color: white;
             background-color: rgb(23, 84, 57);
         }
+        .sensor_activo {
+            width: 100px;
+            height: 100px;
+            border-radius: 8px;
+            color: black;
+            background-color: rgb(28, 240, 145);
+        }
+        .sensor_inactivo {
+            width: 100px;
+            height: 100px;
+            border-radius: 8px;
+            color: black;
+            background-color: rgb(240, 28, 28);
+        }
     </style>
 </head>
 <body>
     <h1>Plano del colegio planta <span id="planta-n">1</span></h1>
     <button class="planta" onclick="cambiarPlanta()">Cambiar planta</button>
+    <br><br>
+    <button class="sensor_activo" onclick="sensor()">Sensores: <span>Activado</span></button>
     
     <div style="position: absolute;">
-        <img id="planoP1" src="Plano P1.jpg" alt="">
+        <img id="planoP1" src="imgs/Plano P1.jpg" alt="">
     </div>
     <div style="position: absolute;">
-        <img id="planoP2" src="Plano P2.jpg" alt="" style="display: none;">
+        <img id="planoP2" src="imgs/Plano P2.jpg" alt="" style="display: none;">
     </div>
-    <script src="botoncambiarplanta.js"></script>
 
 </body>
 </html>
