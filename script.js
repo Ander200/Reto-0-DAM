@@ -1,3 +1,11 @@
+async function getPlanos() {
+	const response = await fetch('https://retocero.api.tenbeltz.com/planos');
+	
+	const data = await response.json();
+	console.log('Plantas:', data);
+}
+
+
 function cambiarPlanta() {
 	let planoP1 = document.getElementById('planoP1_off');
 	let planoP2 = document.getElementById('planoP2_off');
@@ -49,3 +57,5 @@ function sensor() {
 	// }
 
 }
+
+getPlanos();
