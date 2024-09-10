@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <title>Reto 0</title>
     <style>
         body {
@@ -25,7 +26,15 @@
 </head>
 <body>
     <h1>Plano del colegio planta 1</h1>
-    <button class="planta">Cambiar planta</button>
-    <img src="Plano P1.jpg" alt="">
+    <button class="planta" onclick="cambiarPlanta()">Cambiar planta</button>
+    
+    <div style="position: absolute;">
+        <img id="planoP1" src="Plano P1.jpg" alt="">
+    </div>
+    <div style="position: absolute;">
+        <img id="planoP2" src="Plano P2.jpg" alt="" style="display: none;">
+    </div>
+    <script src="botoncambiarplanta.js"></script>
+
 </body>
 </html>
