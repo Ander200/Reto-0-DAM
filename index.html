@@ -46,8 +46,13 @@
 <body>
     <h1>Plano del colegio planta <span id="planta-n">1</span></h1>
     <button class="planta_button" onclick="cambiarPlanta()">Cambiar planta</button>
-    <br><br>
+    <br></br>
     <button id="sensor_button" class="sensor_inactivo" onclick="sensor()">Sensores: <span id="sensor-n">Desactivado</span></button>
+    <br></br>
+    <button id="calefaccion-btn" class="sensor_inactivo" onclick="eaCalefaccion()">Encender calefacción</button>
+    <div id="calefaccion" hidden>
+        <img src="imgs/calef.png" alt="" style="height: 50px; width: 50px;">
+    </div>
     
     <div style="position: absolute;" id="planta1">
         <img id="planoP1_off" src="imgs/Plano P1 sensor_apagado.jpg" alt="">
