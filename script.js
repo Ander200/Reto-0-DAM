@@ -1,8 +1,12 @@
+// Función para cambiar de planta
 function cambiarPlanta() {
 	let planoP1 = document.getElementById('planoP1_off');
 	let planoP2 = document.getElementById('planoP2_off');
 
 	let planta_n = document.getElementById('planta-n');
+
+	var calefaccionDiv = document.getElementById('calefaccion');
+    var calefaccionBtn = document.getElementById('calefaccion-btn');
 	
 	if (planoP1.style.display === 'none') {
 		planoP1.style.display = 'block';
@@ -13,7 +17,12 @@ function cambiarPlanta() {
 		planoP2.style.display = 'block';
 		planta_n.innerHTML = "2"
 	}
+
+	 // Reiniciar el botón de calefacción y ocultar la imagen
+	 calefaccionDiv.hidden = true;
+	 calefaccionBtn.textContent = 'Encender calefacción';
 }
+
 
 function sensor() {
 	let activoP1 = document.getElementById('planoP1_on');
@@ -48,4 +57,23 @@ function sensor() {
 	// 	sensor_n.innerHTML = "Desactivados"
 	// }
 
+}
+
+
+//encender y apagar la calefacción
+function eaCalefaccion() {
+    var calefaccionDiv = document.getElementById('calefaccion');
+    var calefaccionBtn = document.getElementById('calefaccion-btn');
+    
+    if (calefaccionDiv.hidden) {
+        calefaccionDiv.hidden = false;
+        calefaccionBtn.textContent = 'Apagar calefacción';
+		calefaccionBtn.classList.add('sensor_activo')
+		calefaccionBtn.classList.remove('sensor_inactivo')
+    } else {
+        calefaccionDiv.hidden = true;
+        calefaccionBtn.textContent = 'Encender calefacción';
+		calefaccionBtn.classList.add('sensor_inactivo')
+		calefaccionBtn.classList.remove('sensor_activo')
+    }
 }
