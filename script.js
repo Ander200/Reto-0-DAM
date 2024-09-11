@@ -1,14 +1,53 @@
 async function getPlanos() {
 	const response = await fetch('https://retocero.api.tenbeltz.com/planos');
-	
 	const data = await response.json();
+	
 	console.log('Plantas:', data);
+	// console.log(data[0]['luces']);
+	
+	return data
+	
 }
 
-// Función para cambiar de planta
-function cambiarPlanta() {
-	let planoP1 = document.getElementById('planoP1_off');
-	let planoP2 = document.getElementById('planoP2_off');
+async function getPlanta(numero_planta) {
+	const response = await fetch('https://retocero.api.tenbeltz.com/planos');
+	const data = await response.json();
+	
+	console.log(data[numero_planta]);
+	
+	return data[numero_planta]
+	
+}
+
+async function pintarPlanta(planta) {
+	let luces = planta['luces']
+	console.log(luces);
+	
+	
+}
+
+async function switchLuces(planta_id) {
+	console.log(planta_id);
+	
+	const resp = await fetch(
+		'https://retocero.api.tenbeltz.com/plantas/'+planta_id+'/switch?attribute=luces&username=admin',
+		{method:'PUT'});
+	
+	const data = await resp.json();
+	
+	return data
+	
+}
+
+let currentPlantaId = 0
+async function cambiarPlanta() {
+	currentPlantaId = currentPlantaId === 0 ? 1 : 0;
+	let numero_planta = currentPlantaId
+	const planta = await getPlanta(numero_planta)
+	pintarPlanta(planta)
+
+	let planoP1 = document.getElementById('planta1');
+	let planoP2 = document.getElementById('planta2');
 
 	let planta_n = document.getElementById('planta-n');
 
@@ -31,7 +70,14 @@ function cambiarPlanta() {
 }
 
 
-function sensor() {
+async function sensor() {
+	let planta_n = document.getElementById('planta-n');
+	
+	const luces = await switchLuces(planta_n.innerText)
+	console.log(luces['planta']);
+	
+	
+
 	let activoP1 = document.getElementById('planoP1_on');
 	let apagadoP1 = document.getElementById('planoP1_off');
 	let activoP2 = document.getElementById('planoP2_on');
@@ -40,29 +86,39 @@ function sensor() {
 	let sensor_n = document.getElementById('sensor-n');
 	let sensor_button = document.getElementById('sensor_button')
 
-	if (activoP1.style.display == 'none') {
-		activoP1.style.display = 'block';
-		apagadoP1.style.display = 'none';
-		sensor_n.innerHTML = "Activados"
-		sensor_button.classList.add('sensor_activo')
-		sensor_button.classList.remove('sensor_inactivo')
+	if (luces['planta']['id'] == 1) {
+		if (luces['planta']['luces'] == true) {
+			activoP1.style.display = 'block';
+			apagadoP1.style.display = 'none';
+			sensor_n.innerHTML = "Activados"
+			sensor_button.classList.add('sensor_activo')
+			sensor_button.classList.remove('sensor_inactivo')
+			luces
+		} else {
+			activoP1.style.display = 'none';
+			apagadoP1.style.display = 'block';
+			sensor_n.innerHTML = "Desactivados"
+			sensor_button.classList.add('sensor_inactivo')
+			sensor_button.classList.remove('sensor_activo')
+			luces
+		}
 	} else {
-		activoP1.style.display = 'none';
-		apagadoP1.style.display = 'block';
-		sensor_n.innerHTML = "Desactivados"
-		sensor_button.classList.add('sensor_inactivo')
-		sensor_button.classList.remove('sensor_activo')
+		if (luces['planta']['luces'] == true) {
+			activoP2.style.display = 'block';
+			apagadoP2.style.display = 'none';
+			sensor_n.innerHTML = "Activados"
+			sensor_button.classList.add('sensor_activo')
+			sensor_button.classList.remove('sensor_inactivo')
+			luces
+		} else {
+			activoP2.style.display = 'none';
+			apagadoP2.style.display = 'block';
+			sensor_n.innerHTML = "Desactivados"
+			sensor_button.classList.add('sensor_inactivo')
+			sensor_button.classList.remove('sensor_activo')
+			luces
+		}
 	}
-
-	// if (activoP2.style.display == 'none') {
-	// 	activoP2.style.display = 'block';
-	// 	apagadoP2.style.display = 'none';
-	// 	sensor_n.innerHTML = "Activados"
-	// } else {
-	// 	activoP2.style.display = 'none';
-	// 	apagadoP2.style.display = 'block';
-	// 	sensor_n.innerHTML = "Desactivados"
-	// }
 
 }
 
@@ -86,3 +142,4 @@ function eaCalefaccion() {
 }
 
 getPlanos()
+switchLuces()

@@ -16,11 +16,14 @@
             width: 50%;
             height: 50%;
         }
-        .planta_button {
+        button {
             width: 100px;
             height: 100px;
             border-radius: 8px;
             color: black;
+            margin-right: 16px;
+        }
+        .planta_button {
             background-color: rgb(28, 240, 145);
         }
         .planta_button:active {
@@ -28,17 +31,9 @@
             background-color: rgb(23, 84, 57);
         }
         .sensor_activo {
-            width: 100px;
-            height: 100px;
-            border-radius: 8px;
-            color: black;
             background-color: rgb(28, 240, 145);
         }
         .sensor_inactivo {
-            width: 100px;
-            height: 100px;
-            border-radius: 8px;
-            color: black;
             background-color: rgb(240, 28, 28);
         }
     </style>
@@ -46,9 +41,7 @@
 <body>
     <h1>Plano del colegio planta <span id="planta-n">1</span></h1>
     <button class="planta_button" onclick="cambiarPlanta()">Cambiar planta</button>
-    <br></br>
-    <button id="sensor_button" class="sensor_inactivo" onclick="sensor()">Sensores: <span id="sensor-n">Desactivado</span></button>
-    <br></br>
+    <button id="sensor_button" class="sensor_inactivo" onclick="sensor()">Sensores: <span id="sensor-n">Desactivados</span></button>
     <button id="calefaccion-btn" class="sensor_inactivo" onclick="eaCalefaccion()">Encender calefacción</button>
     <div id="calefaccion" hidden>
         <img src="imgs/calef.png" alt="" style="height: 50px; width: 50px;">
@@ -58,8 +51,8 @@
         <img id="planoP1_off" src="imgs/Plano P1 sensor_apagado.jpg" alt="">
         <img id="planoP1_on" src="imgs/Plano P1 sensor_encendido.jpg" alt="" style="display: none;">
     </div>
-    <div style="position: absolute;" id="planta2" style="display: none;">
-        <img id="planoP2_off" src="imgs/Plano P2 sensor_apagado.jpg" alt="" style="display: none;">
+    <div style="position: absolute; display: none;" id="planta2">
+        <img id="planoP2_off" src="imgs/Plano P2 sensor_apagado.jpg" alt="">
         <img id="planoP2_on" src="imgs/Plano P2 sensor_encendido.jpg" alt="" style="display: none;">
     </div>
 
