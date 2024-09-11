@@ -3,7 +3,7 @@ async function getPlanos() {
 	const data = await response.json();
 	
 	console.log('Plantas:', data);
-	// console.log(data[0]['luces']);
+	actualizarButton(data[0])
 	
 	return data
 	
@@ -20,8 +20,14 @@ async function getPlanta(numero_planta) {
 }
 
 async function actualizarButton(planta) {
+
+	
 	let sensor_n = document.getElementById('sensor-n');
 	let sensor_button = document.getElementById('sensor_button')
+
+	let calef_n = document.getElementById('calef_n');
+	let calefaccion_btn = document.getElementById('calefaccion-btn')
+	let calefdiv = document.getElementById('idcalef');
 
 	if (planta['luces'] == true) {
 		sensor_n.innerHTML = "Activados"
@@ -32,12 +38,36 @@ async function actualizarButton(planta) {
 		sensor_button.classList.add('sensor_inactivo')
 		sensor_button.classList.remove('sensor_activo')
 	}
+
+	if (planta['calefaccion'] == true) {
+		calef_n.innerHTML = "Encendida"
+		calefaccion_btn.classList.add('sensor_activo')
+		calefaccion_btn.classList.remove('sensor_inactivo')
+		calefdiv.hidden = false;
+
+	} else {
+		calef_n.innerHTML = "Apagada"
+		calefaccion_btn.classList.add('sensor_inactivo')
+		calefaccion_btn.classList.remove('sensor_activo')
+	}
 }
 
 async function switchLuces(planta_id) {
 	
 	const resp = await fetch(
 		'https://retocero.api.tenbeltz.com/plantas/'+planta_id+'/switch?attribute=luces&username=admin',
+		{method:'PUT'});
+	
+	const data = await resp.json();
+	
+	return data
+	
+}
+
+async function switchCalefaccion(planta_id) {
+	
+	const resp = await fetch(
+		'https://retocero.api.tenbeltz.com/plantas/'+planta_id+'/switch?attribute=calefaccion&username=admin',
 		{method:'PUT'});
 	
 	const data = await resp.json();
@@ -58,9 +88,6 @@ async function cambiarPlanta() {
 
 	let planta_n = document.getElementById('planta-n');
 
-	var calefaccionDiv = document.getElementById('calefaccion');
-    var calefaccionBtn = document.getElementById('calefaccion-btn');
-	
 	if (planoP1.style.display === 'none') {
 		planoP1.style.display = 'block';
 		planoP2.style.display = 'none';
@@ -71,9 +98,6 @@ async function cambiarPlanta() {
 		planta_n.innerHTML = "2"
 	}
 
-	 // Reiniciar el botón de calefacción y ocultar la imagen
-	 calefaccionDiv.hidden = true;
-	 calefaccionBtn.textContent = 'Encender calefacción';
 }
 
 
@@ -118,8 +142,39 @@ async function sensor() {
 
 
 //encender y apagar la calefacción
-function eaCalefaccion() {
-    var calefaccionDiv = document.getElementById('calefaccion');
+async function eaCalefaccion() {
+	let planta_n = document.getElementById('planta-n');
+	
+	const calefaccion = await switchCalefaccion(planta_n.innerText)
+	
+	const planta = await getPlanta(planta_n.innerText - 1)
+	actualizarButton(planta)
+	
+	
+
+	let activoP1 = document.getElementById('idcalef');
+	let activoP2 = document.getElementById('idcalef');
+
+	if (calefaccion['planta']['id'] == 1) {
+		if (calefaccion['planta']['calefaccion'] == true) {
+			activoP1.hidden = false;
+			calefaccion
+		} else {
+			activoP1.hidden = true;
+			calefaccion
+		}
+	} else {
+		if (calefaccion['planta']['calefaccion'] == true) {
+			activoP2.hidden = false;
+			calefaccion
+		} else {
+			activoP2.hidden = true;
+			calefaccion
+		}
+	}
+	
+	
+	/* var calefaccionDiv = document.getElementById('calefaccion');
     var calefaccionBtn = document.getElementById('calefaccion-btn');
     
     if (calefaccionDiv.hidden) {
@@ -132,7 +187,9 @@ function eaCalefaccion() {
         calefaccionBtn.textContent = 'Encender calefacción';
 		calefaccionBtn.classList.add('sensor_inactivo')
 		calefaccionBtn.classList.remove('sensor_activo')
-    }
+    } */
 }
 
 getPlanos()
+var planta = getPlanta(1)
+actualizarButton(planta)
