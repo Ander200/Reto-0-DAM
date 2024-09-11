@@ -142,4 +142,3 @@ function eaCalefaccion() {
 }
 
 getPlanos()
-switchLuces()
