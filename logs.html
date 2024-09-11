@@ -251,7 +251,7 @@
             });
         }
 
-        if (localStorage.getItem("admin") === "false") {
+        if (localStorage.getItem("admin") !== "true") {
             Swal.fire({
                 title: 'No tienes permisos',
                 text: 'No tienes permisos para acceder a esta página',
