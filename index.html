@@ -3,9 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="script.js"></script>
-    
     <title>Reto 0</title>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- Logo head -->
+    <link rel="icon" href="imgs/logo.png" type="image/png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
     <style>
         body {
             background-color: beige;
@@ -13,15 +19,12 @@
         img {
             display: block;
             margin: auto;
-            width: 50%;
-            height: 50%;
         }
         button {
-            width: 100px;
-            height: 100px;
+            width: 110px;
+            height: 110px;
             border-radius: 8px;
             color: black;
-            margin-right: 16px;
         }
         .planta_button {
             background-color: rgb(28, 240, 145);
@@ -39,22 +42,51 @@
     </style>
 </head>
 <body>
-    <h1>Plano del colegio planta <span id="planta-n">1</span></h1>
-    <button class="planta_button" onclick="cambiarPlanta()">Cambiar planta</button>
-    <button id="sensor_button" class="sensor_inactivo" onclick="sensor()">Sensores: <span id="sensor-n">Desactivados</span></button>
-    <button id="calefaccion-btn" class="sensor_inactivo" onclick="eaCalefaccion()">Encender calefacción</button>
-    <div id="calefaccion" hidden>
-        <img src="imgs/calef.png" alt="" style="height: 50px; width: 50px;">
-    </div>
-    
-    <div style="position: absolute;" id="planta1">
-        <img id="planoP1_off" src="imgs/Plano P1 sensor_apagado.jpg" alt="">
-        <img id="planoP1_on" src="imgs/Plano P1 sensor_encendido.jpg" alt="" style="display: none;">
-    </div>
-    <div style="position: absolute; display: none;" id="planta2">
-        <img id="planoP2_off" src="imgs/Plano P2 sensor_apagado.jpg" alt="">
-        <img id="planoP2_on" src="imgs/Plano P2 sensor_encendido.jpg" alt="" style="display: none;">
-    </div>
+    <!-- Navbar -->
+    <nav class="h-auto bg-white border-gray-200 w-full">
+        <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+            <a href="main.html" class="flex items-center space-x-3 rtl:space-x-reverse">
+                <img src="imgs/logo.png" class="h-8" alt="Flowbite Logo" />
+                <span class="self-center text-2xl font-semibold whitespace-nowrap">CIFP Txurdinaga</span>
+            </a>
+            <div class="hidden w-full md:block md:w-auto" id="navbar-default">
+                <ul class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white">
+                    <li>
+                        <a href="main.html" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0">Inicio</a>
+                    </li>
+                    <li>
+                        <a href="index.html" class="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0">Planos</a>
+                    </li>
+                    <li>
+                        <a href="logs.html" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0" aria-current="page">Logs</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="m-4">
+        <h1 class="text-2xl my-2">Plano del colegio planta <span id="planta-n">1</span></h1>
+        <div class="flex space-x-4">
+            <button class="planta_button" onclick="cambiarPlanta()">Cambiar planta</button>
+            <button id="sensor_button" class="sensor_inactivo" onclick="sensor()">Sensores: <span id="sensor-n">Desactivados</span></button>
+            <button id="calefaccion-btn" class="sensor_inactivo" onclick="eaCalefaccion()">Encender calefacción</button>
+        </div>
+        <div id="calefaccion" hidden>
+            <img src="imgs/calef.png" alt="" style="height: 50px; width: 50px;">
+        </div>
+        
+        <div class="flex justify-center w-full">
+            <div style="position: absolute;" id="planta1">
+                <img id="planoP1_off" src="imgs/Plano_P1_sensor_apagado.png" alt="">
+                <img id="planoP1_on" src="imgs/Plano_P1_sensor_encendido.png" alt="" style="display: none;">
+            </div>
+            <div style="position: absolute; display: none;" id="planta2">
+                <img id="planoP2_off" src="imgs/Plano_P2_sensor_apagado.png" alt="">
+                <img id="planoP2_on" src="imgs/Plano_P2_sensor_encendido.png" alt="" style="display: none;">
+            </div>
+        </div>
+    </main>
 
 </body>
 </html>
