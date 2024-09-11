@@ -49,6 +49,7 @@ async function actualizarButton(planta) {
 		calef_n.innerHTML = "Apagada"
 		calefaccion_btn.classList.add('sensor_inactivo')
 		calefaccion_btn.classList.remove('sensor_activo')
+		calefdiv.hidden = true;
 	}
 }
 
