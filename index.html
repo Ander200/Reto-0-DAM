@@ -27,6 +27,9 @@
             border-radius: 8px;
             color: black;
         }
+        .plano-img {
+            width: 1000px;
+        }
         .planta_button {
             background-color: rgb(28, 240, 145);
         }
@@ -77,14 +80,14 @@
             <img src="imgs/calef.png" alt="" style="height: 50px; width: 50px;">
         </div>
         
-        <div class="flex justify-center w-full">
+        <div class="flex justify-center">
             <div style="position: absolute;" id="planta1">
-                <img id="planoP1_off" src="imgs/Plano_P1_sensor_apagado.png" alt="">
-                <img id="planoP1_on" src="imgs/Plano_P1_sensor_encendido.png" alt="" style="display: none;">
+                <img class="plano-img" id="planoP1_off" src="imgs/Plano_P1_sensor_apagado.png" alt="">
+                <img class="plano-img" id="planoP1_on" src="imgs/Plano_P1_sensor_encendido.png" alt="" style="display: none;">
             </div>
             <div style="position: absolute; display: none;" id="planta2">
-                <img id="planoP2_off" src="imgs/Plano_P2_sensor_apagado.png" alt="">
-                <img id="planoP2_on" src="imgs/Plano_P2_sensor_encendido.png" alt="" style="display: none;">
+                <img class="plano-img" id="planoP2_off" src="imgs/Plano_P2_sensor_apagado.png" alt="">
+                <img class="plano-img" id="planoP2_on" src="imgs/Plano_P2_sensor_encendido.png" alt="" style="display: none;">
             </div>
         </div>
         <script>
